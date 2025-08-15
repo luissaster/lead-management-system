@@ -1,0 +1,28 @@
+{% load static %}
+<!-- ESSENCIAL: Carrega as tags de ficheiros estáticos -->
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Captura de Lead</title>
+    <!-- Liga o nosso ficheiro CSS externo -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Adiciona a imagem -->
+      <img
+        src="{% static 'images/img.jpg' %}"
+        alt="Gato de óculos escuro"
+        class="logo"
+      />
+
+      <h1>Cadastrar Novo Lead</h1>
+      <form method="POST">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+  </body>
+</html>
