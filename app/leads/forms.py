@@ -8,10 +8,10 @@ class LeadForm(forms.ModelForm):
         widgets = {
             'nome': forms.TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Digite seu nome completo'
+                'placeholder': 'Nome completo'
             }),
             'email': forms.EmailInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Digite seu melhor e-mail'
+                'placeholder': 'lead@empresa.com'
             }),
         }
