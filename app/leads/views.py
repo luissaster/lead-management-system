@@ -7,7 +7,6 @@ from .models import Lead
 from decouple import config
 import requests
 
-
 # Create your views here.
 
 def lead_create_view(request):
@@ -27,7 +26,7 @@ def lead_create_view(request):
             try:
                 webhook_url = config('N8N_WEBHOOK_URL')
 
-                # Prepara os dados para enviar como JSON
+                # Prepara os dados para enviar
                 payload = {
                     'nome': lead.nome,
                     'email': lead.email,
@@ -38,6 +37,7 @@ def lead_create_view(request):
                 response = requests.post(webhook_url, json=payload, timeout=5)
 
                 # Imprime os detalhes da resposta nos logs do Docker
+                # docker-compose logs challenge_web
                 print("--- RESPOSTA DO N8N ---")
                 print(f"Status Code: {response.status_code}")
                 try:
