@@ -30,7 +30,10 @@ def lead_create_view(request):
                 payload = {
                     'nome': lead.nome,
                     'email': lead.email,
-                    'criado_em': lead.criado_em.isoformat()
+                    'criado_em': lead.criado_em.isoformat(),
+                    'telefone': lead.telefone,
+                    'empresa': lead.empresa,
+                    'observacoes': lead.observacoes,
                 }
 
                 # Envia a requisição POST e captura a resposta
