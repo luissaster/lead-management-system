@@ -9,63 +9,66 @@
     value="{{ request.GET.q }}"
   />
   <button type="submit">Buscar</button>
-</form>
 
-<div class="tabela">
-  <table>
-    <thead>
-      <tr>
-        <th>Nome</th>
-        <th>Email</th>
-        <th>Telefone</th>
-        <th>Empresa</th>
-        <th>Status</th>
-        <th>Criado em</th>
-        <th>Observações</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for lead in page_obj %}
-      <tr>
-        <td>{{ lead.nome }}</td>
-        <td>{{ lead.email }}</td>
-        <td>{{ lead.telefone }}</td>
-        <td>{{ lead.empresa }}</td>
-        <td>{{ lead.get_status_display }}</td>
-        <td>{{ lead.criado_em|date:"d/m/Y H:i" }}</td>
-        <td>{{ lead.observacoes }}</td>
-      </tr>
+  <div class="tabela">
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Telefone</th>
+          <th>Empresa</th>
+          <th>Status</th>
+          <th>Criado em</th>
+          <th>Detalhes</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for lead in page_obj %}
+        <tr>
+          <td>{{ lead.nome }}</td>
+          <td>{{ lead.email }}</td>
+          <td>{{ lead.telefone }}</td>
+          <td>{{ lead.empresa }}</td>
+          <td>{{ lead.get_status_display }}</td>
+          <td>{{ lead.criado_em|date:"d/m/Y H:i" }}</td>
+          <td>
+            <a href="{% url 'lead_detail' lead.id %}" class="btn-detalhes"
+              >Detalhes</a
+            >
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="7">Nenhum lead encontrado.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 
-      {% empty %}
-      <tr>
-        <td colspan="3">Nenhum lead encontrado.</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</div>
+  <div class="pagination">
+    <span class="step-links">
+      {% if page_obj.has_previous %}
+      <a href="?page=1&q={{ request.GET.q }}">Primeira</a>
+      <a href="?page={{ page_obj.previous_page_number }}&q={{ request.GET.q }}"
+        >Anterior</a
+      >
+      {% endif %}
 
-<div class="pagination">
-  <span class="step-links">
-    {% if page_obj.has_previous %}
-    <a href="?page=1&q={{ request.GET.q }}">Primeira</a>
-    <a href="?page={{ page_obj.previous_page_number }}&q={{ request.GET.q }}"
-      >Anterior</a
-    >
-    {% endif %}
+      <span class="current">
+        Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+      </span>
 
-    <span class="current">
-      Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+      {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}&q={{ request.GET.q }}"
+        >Próxima</a
+      >
+      <a href="?page={{ page_obj.paginator.num_pages }}&q={{ request.GET.q }}"
+        >Última</a
+      >
+      {% endif %}
     </span>
-
-    {% if page_obj.has_next %}
-    <a href="?page={{ page_obj.next_page_number }}&q={{ request.GET.q }}"
-      >Próxima</a
-    >
-    <a href="?page={{ page_obj.paginator.num_pages }}&q={{ request.GET.q }}"
-      >Última</a
-    >
-    {% endif %}
-  </span>
-</div>
-{% endblock %}
+  </div>
+  {% endblock %}
+</form>
