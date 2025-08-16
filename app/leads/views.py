@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
+from django.core.paginator import Paginator
 from .forms import LeadForm
-
-import requests
+from .models import Lead
 from decouple import config
+import requests
+
 
 # Create your views here.
 
@@ -59,3 +61,10 @@ def lead_create_view(request):
 
 def success_view(request):
     return render(request, 'leads/success.html')
+
+def lead_list_view(request):
+    leads = Lead.objects.all().order_by("-criado_em")
+    paginator = Paginator(leads, 10)  # 10 registros por página
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    return render(request, "leads/lead_list.html", {"page_obj": page_obj})
