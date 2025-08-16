@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
+from django.db.models import Q
 from .forms import LeadForm
 from .models import Lead
 from decouple import config
@@ -63,8 +64,16 @@ def success_view(request):
     return render(request, 'leads/success.html')
 
 def lead_list_view(request):
-    leads = Lead.objects.all().order_by("-criado_em")
-    paginator = Paginator(leads, 10)  # 10 registros por página
-    page_number = request.GET.get("page")
+    queryset = Lead.objects.all().order_by('-criado_em')
+    query = request.GET.get('q')
+
+    if query:
+        queryset = queryset.filter(
+            Q(nome__icontains=query) | Q(email__icontains=query)
+        )
+
+    paginator = Paginator(queryset, 10) # 10 leads por página
+    page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request, "leads/lead_list.html", {"page_obj": page_obj})
+
+    return render(request, 'leads/lead_list.html', {'page_obj': page_obj})

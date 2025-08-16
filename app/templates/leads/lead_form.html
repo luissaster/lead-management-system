@@ -1,25 +1,22 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Captura de Lead</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-  </head>
-  <body>
-    <div class="container">
-      <img
-        src="{% static 'images/img.jpg' %}"
-        alt="Gato de óculos escuro"
-        class="logo"
-      />
 
-      <h1>Cadastrar lead</h1>
-      <form method="POST">
-        {% csrf_token %} {{ form.as_p }}
-        <button type="submit">Enviar</button>
-      </form>
-    </div>
-  </body>
-</html>
+{% block title %}Cadastrar Novo Lead{% endblock %}
+
+{% block content %}
+    <h2>Cadastrar Novo Lead</h2>
+    <img src="{% static 'images/img.jpg' %}" alt="Gatinho de óculos escuro" class="img"/>
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Salvar</button>
+    </form>
+{% endblock %}
