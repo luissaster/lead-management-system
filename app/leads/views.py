@@ -1,9 +1,4 @@
 from django.shortcuts import get_object_or_404
-
-def lead_detail_view(request, pk):
-    from .models import Lead
-    lead = get_object_or_404(Lead, pk=pk)
-    return render(request, 'leads/lead_detail.html', {'lead': lead})
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -83,3 +78,11 @@ def lead_list_view(request):
     page_obj = paginator.get_page(page_number)
 
     return render(request, 'leads/lead_list.html', {'page_obj': page_obj})
+
+def lead_detail_view(request, pk):
+    from .models import Lead
+    lead = get_object_or_404(Lead, pk=pk)
+    return render(request, 'leads/lead_detail.html', {'lead': lead})
+
+def dashboard_view(request):
+    return render(request, 'leads/dashboard.html')
