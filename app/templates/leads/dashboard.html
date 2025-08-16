@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block content %}
+
+<h2>Dashboard</h2>
+<div class="dashboard">
+  <p>Bem-vindo ao sistema de leads!</p>
+  <p>Use o menu para navegar entre as opções.</p>
+  <p>
+    Você pode cadastrar novos leads, visualizar a lista de leads e ver os
+    detalhes de cada lead.
+  </p>
+  <p>
+    Para começar,
+    <a href="{% url 'lead_create_page' %}">cadastre um novo lead</a>.
+  </p>
+</div>
+
+{% endblock %}

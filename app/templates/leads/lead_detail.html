@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Detalhes do Lead</h2>
+
+<div class="tabela">
+  <table>
+    <tr>
+      <th>Nome</th>
+      <td>{{ lead.nome }}</td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td>{{ lead.email }}</td>
+    </tr>
+    <tr>
+      <th>Telefone</th>
+      <td>{{ lead.telefone }}</td>
+    </tr>
+    <tr>
+      <th>Empresa</th>
+      <td>{{ lead.empresa }}</td>
+    </tr>
+    <tr>
+      <th>Status</th>
+      <td>{{ lead.get_status_display }}</td>
+    </tr>
+    <tr>
+      <th>Criado em</th>
+      <td>{{ lead.criado_em|date:"d/m/Y H:i" }}</td>
+    </tr>
+    <tr>
+      <th>Observações</th>
+      <td>{{ lead.observacoes }}</td>
+    </tr>
+  </table>
+  <br />
+  <a href="{% url 'lead_list_page' %}">Voltar para lista</a>
+</div>
+{% endblock %}

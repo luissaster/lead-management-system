@@ -1,44 +1,33 @@
-# Versão do docker-compose que estamos usando
-# Não é necessária
-# version: '3.8'
-
-# Aqui listamos todos os nossos "mini-computadores" (contêineres/serviços)
 services:
-  # 1. O serviço para nossa aplicação Django [cite: 65]
   challenge_web:
     build: . # Constrói a imagem a partir do Dockerfile na pasta atual (.)
-    container_name: challenge_web # Nome do contêiner
+    container_name: challenge_web 
     command: python manage.py runserver 0.0.0.0:8000 # Comando para iniciar o servidor Django
     volumes:
-      - ./app:/app # Espelha a pasta 'app' do seu PC para dentro do contêiner. Mudanças no código refletem instantaneamente.
+      - ./app:/app
     ports:
-      - "8000:8000" # Expõe a porta 8000 do contêiner para a porta 8000 do seu PC
+      - "8000:8000" 
     env_file:
-      - .env # Carrega as variáveis de ambiente do arquivo .env
+      - .env 
     depends_on:
       - challenge_db # Diz ao Docker para iniciar o banco de dados ANTES da aplicação web
-
-  # 2. O serviço para o banco de dados Postgres [cite: 66]
   challenge_db:
-    image: postgres:13 # Usa uma imagem pronta e oficial do Postgres
-    container_name: challenge_db # Nome do contêiner
+    image: postgres:13 
+    container_name: challenge_db 
     volumes:
       - postgres_data:/var/lib/postgresql/data/ # Garante que os dados do banco não se percam ao reiniciar o contêiner
-    environment: # Configura variáveis de ambiente diretamente para o Postgres
+    environment: 
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASS}
-
-  # 3. O serviço para o n8n [cite: 67]
   challenge_n8n:
-    image: n8nio/n8n # Usa a imagem oficial do n8n
-    container_name: challenge_n8n # Nome do contêiner
+    image: n8nio/n8n 
+    container_name: challenge_n8n 
     ports:
-      - "5678:5678" # Expõe a porta do n8n para a porta 5678 do seu PC
+      - "5678:5678" 
     volumes:
-      - n8n_data:/home/node/.n8n # Garante que seus workflows do n8n não se percam
+      - n8n_data:/home/node/.n8n 
 
-# Volumes são usados para persistir dados gerados pelos contêineres
 volumes:
   postgres_data:
   n8n_data:

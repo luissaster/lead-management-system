@@ -1,4 +1,4 @@
-# 1. Imagem base: Um Linux enxuto com Python 3.9 já instalado
+# 1. Imagem base
 FROM python:3.9-slim
 
 # 2. Define variáveis de ambiente para o Python
@@ -15,5 +15,4 @@ COPY requirements.txt /app/
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
 # 6. Copia o código da sua aplicação para dentro do contêiner
-# (Será feito após criarmos o projeto Django)
 COPY ./app /app

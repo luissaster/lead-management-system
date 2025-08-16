@@ -1,9 +1,10 @@
 from django.urls import path
-from .views import lead_create_view, success_view
+from .views import lead_create_view, success_view, lead_list_view, lead_detail_view, dashboard_view
 
 urlpatterns = [
-    # A URL raiz ('') será atendida pela nossa view de criação de lead
-    path('', lead_create_view, name='lead_create_page'),
-    # A URL '/success/' será atendida pela view de sucesso
+    path('', dashboard_view, name='dashboard_page'),
+    path('create/', lead_create_view, name='lead_create_page'),
     path('success/', success_view, name='success_page'),
+    path('leads/', lead_list_view, name='lead_list_page'),
+    path('leads/<int:pk>/', lead_detail_view, name='lead_detail'),
 ]
