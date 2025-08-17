@@ -12,7 +12,6 @@ import requests
 # Create your views here.
 
 def lead_create_view(request):
-    # Cria uma instância do nosso formulário
     form = LeadForm()
 
     if request.method == 'POST':
@@ -67,9 +66,6 @@ def lead_create_view(request):
         'form': form
     }
     return render(request, 'leads/lead_form.html', context)
-
-def success_view(request):
-    return render(request, 'leads/success.html')
 
 def lead_list_view(request):
     queryset = Lead.objects.all().order_by('-criado_em')

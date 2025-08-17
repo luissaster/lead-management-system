@@ -109,7 +109,6 @@ main {
   text-decoration: underline;
 }
 
-/* --- Ações da Tabela --- */
 .tabela .actions {
   display: flex;
   gap: 0.5rem;
@@ -121,7 +120,6 @@ main {
   color: #fff;
 }
 
-/* Botões específicos */
 .tabela .actions a.view {
   background-color: #17a2b8;
 }
@@ -148,28 +146,6 @@ main {
 }
 .tabela .actions a:hover {
   background-color: #0056b3;
-}
-
-/* =======================
-   SUCCESS CONTAINER
-======================= */
-.success-container {
-  text-align: center;
-  background: #fff;
-  padding: 2rem;
-  border-radius: 8px;
-  margin: 2rem auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.success-container h1 {
-  color: #38a169;
-}
-
-.success-container a {
-  color: #5a67d8;
-  font-weight: bold;
-  text-decoration: none;
 }
 
 /* =======================
@@ -268,7 +244,6 @@ button[type="submit"]:hover {
   width: 100%;
 }
 
-/* --- Responsividade --- */
 @media (max-width: 900px) {
   .lead-form-flex {
     flex-direction: column;
