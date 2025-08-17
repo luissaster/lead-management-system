@@ -14,4 +14,38 @@
   </p>
 </div>
 
+<div
+  class="grid"
+  style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem"
+>
+  <div style="background: #f5f5f5; padding: 1rem; border-radius: 8px">
+    <h3>Total de Leads</h3>
+    <p>{{ total_leads }}</p>
+  </div>
+  <div style="background: #f5f5f5; padding: 1rem; border-radius: 8px">
+    <h3>Hoje</h3>
+    <p>{{ leads_today }}</p>
+  </div>
+  <div style="background: #f5f5f5; padding: 1rem; border-radius: 8px">
+    <h3>Últimos 30 dias</h3>
+    <p>{{ leads_this_month }}</p>
+  </div>
+  <div style="background: #f5f5f5; padding: 1rem; border-radius: 8px">
+    <h3>Novos</h3>
+    <p>{{ leads_new }}</p>
+  </div>
+  <div style="background: #f5f5f5; padding: 1rem; border-radius: 8px">
+    <h3>Em Contato</h3>
+    <p>{{ leads_in_progress }}</p>
+  </div>
+  <div style="background: #f5f5f5; padding: 1rem; border-radius: 8px">
+    <h3>Convertidos</h3>
+    <p>{{ leads_closed }}</p>
+  </div>
+  <div style="background: #f5f5f5; padding: 1rem; border-radius: 8px">
+    <h3>Perdidos</h3>
+    <p>{{ leads_lost }}</p>
+  </div>
+</div>
+
 {% endblock %}

@@ -78,6 +78,23 @@
       ],
       "id": "e0a8981d-063d-43f3-aa0d-c61cad864f9e",
       "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"ok\": \"false\"\n}",
+        "options": {
+          "responseCode": 400
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        416,
+        96
+      ],
+      "id": "d3f2fd8a-7d18-4987-9d9c-42cac5d78987",
+      "name": "Respond to Webhook1"
     }
   ],
   "pinData": {},
@@ -101,6 +118,13 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     }
@@ -111,7 +135,7 @@
     "callerPolicy": "workflowsFromSameOwner",
     "timezone": "America/Sao_Paulo"
   },
-  "versionId": "f54c2779-7812-433c-ba43-6b697c4dc742",
+  "versionId": "7327d775-27f5-4728-a7ad-aab1f7dfc8a0",
   "meta": {
     "instanceId": "46b356a3409925d99f8ae35c0e2addc14663a4a54fed15d6d7222ef82294eb2a"
   },
