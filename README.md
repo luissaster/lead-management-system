@@ -30,7 +30,7 @@ Abra o arquivo ```.env``` e preencha as variáveis.
 
 Exemplo inicial:
 
-```
+```env
 # Variáveis do Django
 SECRET_KEY='adicione-uma-chave-aleatoria-aqui'
 DEBUG=1
