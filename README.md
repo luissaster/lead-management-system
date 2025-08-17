@@ -60,7 +60,7 @@ Este comando irá construir a imagem da aplicação Django, baixar as imagens do
 
 * Acesse o n8n em: http://localhost:5678.
 * Crie (ou importe) o workflow do arquivo ```workflow.json```.
-* Copie a URL gerada no nó de webhook.
+* Copie o ID gerado no nó de webhook.
 * Edite o arquivo ```.env``` e substitua o valor da variável:
 
 ```env
