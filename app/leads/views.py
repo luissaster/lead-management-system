@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from django.utils import timezone
@@ -53,10 +54,12 @@ def lead_create_view(request):
             except requests.exceptions.RequestException as e:
                 # Tratamento de erro aqui, mas irei apenas imprimir no log
                 print(f"Erro ao enviar webhook para o n8n: {e}")
+                messages.error(request, 'Erro ao enviar dados para o sistema de automação.')
 
             # --- FIM: Lógica do Webhook ---
 
-            return redirect('success_page')
+            messages.success(request, 'Lead cadastrado com sucesso!')
+            return redirect('lead_create_page')
 
     # Se a requisição for GET (primeiro acesso à página) ou o formulário for inválido,
     # renderiza a página com o formulário.
