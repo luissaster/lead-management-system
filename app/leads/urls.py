@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import lead_create_view, success_view, lead_list_view, lead_detail_view, dashboard_view
+from .views import lead_create_view, lead_list_view, lead_detail_view, dashboard_view
 
 urlpatterns = [
     path('', dashboard_view, name='dashboard_page'),
