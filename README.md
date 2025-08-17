@@ -1,6 +1,6 @@
 # Sistema de Leads
 
-Aplicação web para registro de leads, construída com Django e integrada a um workflow de automação no n8n. Toda a infraestrutura é containerizada com Docker e orquestrada com Docker Compose.
+Aplicação web para registro de leads, construída com Django e integrada a um workflow de automação no n8n. Toda a infraestrutura é containerizada com Docker.
 
 ## Pré-requisitos
 
