@@ -13,8 +13,8 @@ Siga os passos abaixo para rodar o ambiente localmente.
 
 ### 1. Clonar o repositório
 ```bash
-git clone https://github.com/seu-usuario/seu-repositorio.git
-cd seu-repositorio
+git clone https://github.com/luissaster/sistema-de-leads.git
+cd sistema-de-leads
 ```
 
 ### 2. Configurar as variáveis de ambiente
