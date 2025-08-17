@@ -89,24 +89,18 @@ def lead_detail_view(request, pk):
     return render(request, 'leads/lead_detail.html', {'lead': lead})
 
 def dashboard_view(request):
-    total_leads = Lead.objects.count()
-    leads_today = Lead.objects.filter(criado_em__date=timezone.now().date()).count()
-    leads_this_month = Lead.objects.filter(criado_em__year=timezone.now().year, criado_em__month=timezone.now().month).count()
-
-    # Estatísticas por status
-    leads_novo = Lead.objects.filter(status='NOVO').count()
-    leads_em_andamento = Lead.objects.filter(status='EM_ANDAMENTO').count()
-    leads_concluido = Lead.objects.filter(status='CONCLUÍDO').count()
-    leads_perdido = Lead.objects.filter(status='PERDIDO').count()
-
-    context = {
-        'total_leads': total_leads,
-        'leads_today': leads_today,
-        'leads_this_month': leads_this_month,
-        'leads_new': leads_novo,
-        'leads_in_progress': leads_em_andamento,
-        'leads_closed': leads_concluido,
-        'leads_lost': leads_perdido,
+    now = timezone.localtime(timezone.now())
+    today = now.date()
+    stats = {
+        'total_leads': Lead.objects.count(),
+        'leads_today': Lead.objects.filter(criado_em__date=today).count(),
+        'leads_this_month': Lead.objects.filter(
+            criado_em__year=now.year,
+            criado_em__month=now.month
+        ).count(),
+        'leads_new': Lead.objects.filter(status='NOVO').count(),
+        'leads_in_progress': Lead.objects.filter(status='EM_CONTATO').count(),
+        'leads_closed': Lead.objects.filter(status='CONVERTIDO').count(),
+        'leads_lost': Lead.objects.filter(status='PERDIDO').count(),
     }
-    
-    return render(request, 'leads/dashboard.html', context)
+    return render(request, 'leads/dashboard.html', stats)
