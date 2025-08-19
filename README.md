@@ -56,7 +56,17 @@ docker-compose up -d --build
 
 Este comando irá construir a imagem da aplicação Django, baixar as imagens do Postgres e n8n, e iniciar os três serviços em segundo plano.
 
-### 4. Configurar o webhook do n8n
+### 4. Aplicar migrações do Django
+
+Agora, execute as migrações do banco de dados dentro do container da aplicação:
+
+```bash
+docker-compose exec challenge_web python manage.py migrate
+```
+
+Esse comando cria as tabelas necessárias no banco de dados.
+
+### 5. Configurar o webhook do n8n
 
 * Acesse o n8n em: http://localhost:5678.
 * Crie (ou importe) o workflow do arquivo ```workflow.json```.
