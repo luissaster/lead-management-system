@@ -1,91 +1,101 @@
-# Sistema de Leads
+# Lead Management System
 
-Aplicação web para registro de leads, construída com Django e integrada a um workflow de automação no n8n. Toda a infraestrutura é containerizada com Docker.
+A web application for lead registration, built with Django and integrated with an n8n automation workflow. The entire infrastructure is containerized using Docker.
 
-## Pré-requisitos
+![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+![n8n](https://img.shields.io/badge/n8n-1A1A1A?style=for-the-badge&logo=n8n&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
-Antes de começar, certifique-se de ter o Docker instalado em sua máquina:
+## Prerequisites
+
+Before you begin, ensure you have Docker installed on your machine:
 * [Docker](https://www.docker.com/get-started/)
 
-## Executando o projeto
+## 🚀 Getting Started
 
-Siga os passos abaixo para rodar o ambiente localmente.
+Follow the steps below to run the environment locally.
 
-### 1. Clonar o repositório
+### 1. Clone the Repository
 ```bash
-git clone https://github.com/luissaster/sistema-de-leads.git
-cd sistema-de-leads
-```
+git clone https://github.com/luissaster/lead-management-system.git
+cd lead-management-system
+````
 
-### 2. Configurar as variáveis de ambiente
+### 2\. Configure Environment Variables
 
-O projeto utiliza um ```.env``` para lidar com as configurações. Crie uma cópia do arquivo de exemplo:
+The project uses a `.env` file to handle its settings. Create a copy of the example file:
 
 ```bash
 cp .env.example .env
 ```
-Abra o arquivo ```.env``` e preencha as variáveis.
 
-⚠️ Atenção: a variável ```N8N_WEBHOOK_URL``` só pode ser definida após o n8n estar rodando.
+Now, open the `.env` file and fill in the variables.
 
-Exemplo inicial:
+⚠️ **Important**: The `N8N_WEBHOOK_URL` variable can only be set after n8n is running.
+
+**Initial example:**
 
 ```env
-# Variáveis do Django
-SECRET_KEY='adicione-uma-chave-aleatoria-aqui'
+# Django Variables
+SECRET_KEY='your-secret-key-here'
 DEBUG=1
 
-# Variáveis do Banco de Dados
+# Database Variables
 DB_NAME=challenge_db
 DB_USER=challenge_user
 DB_PASS=challenge_pass
 DB_HOST=challenge_db
 DB_PORT=5432
 
-# Variável do n8n (defina após o passo 3)
-N8N_WEBHOOK_URL=http://challenge_n8n:5678/webhook/seu-id-unico # Altere para sua URL
+# n8n Variable (set this after step 4)
+N8N_WEBHOOK_URL=http://challenge_n8n:5678/webhook/your-unique-id # Change to your URL
 ```
 
-### 3. Subir os serviços
+### 3\. Launch the Services
 
-Com as variáveis de ambiente configuradas, inicie todos os serviços com o Docker Compose:
+With the environment variables set, start all services using Docker Compose:
 
 ```bash
 docker-compose up -d --build
 ```
 
-Este comando irá construir a imagem da aplicação Django, baixar as imagens do Postgres e n8n, e iniciar os três serviços em segundo plano.
+This command will build the Django application image, download the Postgres and n8n images, and start the three services in the background.
 
-### 4. Aplicar migrações do Django
+### 4\. Apply Django Migrations
 
-Agora, execute as migrações do banco de dados dentro do container da aplicação:
+Next, run the database migrations inside the application container:
 
 ```bash
 docker-compose exec challenge_web python manage.py migrate
 ```
 
-Esse comando cria as tabelas necessárias no banco de dados.
+This command creates the necessary tables in the database.
 
-### 5. Configurar o webhook do n8n
+### 5\. Configure the n8n Webhook
 
-* Acesse o n8n em: http://localhost:5678.
-* Crie (ou importe) o workflow do arquivo ```workflow.json```.
-* Copie o ID gerado no nó de webhook.
-* Edite o arquivo ```.env``` e substitua o valor da variável:
+1.  Access the n8n interface at: http://localhost:5678.
+2.  Create a new workflow or import the one from the `workflow.json` file.
+3.  Copy the Webhook URL from the "Webhook" node.
+4.  Edit your `.env` file again and update the `N8N_WEBHOOK_URL` variable with the URL you just copied:
 
 ```env
-N8N_WEBHOOK_URL=http://challenge_n8n:5678/webhook/seu-id-unico
+N8N_WEBHOOK_URL=http://challenge_n8n:5678/webhook/your-unique-id
 ```
 
-* Reinicie os serviços para aplicar as mudanças:
+5.  Restart the services to apply the changes:
 
 ```bash
 docker-compose up -d
 ```
 
-## Acesso aos serviços
+## Accessing the Services
 
-Após a conclusão dos passos acima, os serviços estarão disponíveis nos seguintes endereços:
+Once the setup is complete, the services will be available at the following addresses:
 
-* Aplicação Django: http://localhost:8000
-* Interface do n8n: http://localhost:5678
+  * **Django Application**: http://localhost:8000
+  * **n8n Interface**: http://localhost:5678
+
+## Contributing
+
+Contributions are welcome\! Please feel free to fork the repository and submit a pull request.
